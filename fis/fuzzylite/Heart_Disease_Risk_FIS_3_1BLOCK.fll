@@ -1,0 +1,196 @@
+Engine: Heart_Disease_Risk_FIS
+InputVariable: age
+  enabled: true
+  range: 0.000 100.000
+  lock-range: false
+  term: young Trapezoid 0.000 0.000 30.000 40.000
+  term: medium Triangle 31.000 40.000 50.000
+  term: old Triangle 40.000 55.000 70.000
+  term: very_old Trapezoid 55.000 70.000 100.000 100.000
+InputVariable: max_heart_rate
+  enabled: true
+  range: 50.000 200.000
+  lock-range: false
+  term: low Trapezoid 0.000 0.000 145.000 158.000
+  term: normal Triangle 145.000 158.000 170.000
+  term: high Trapezoid 158.000 175.000 200.000 200.000
+InputVariable: cholesterol
+  description: The patients serum cholesterol levels
+  enabled: true
+  range: 100.020 399.990
+  lock-range: false
+  term: low Trapezoid 100.000 100.000 200.000 230.000
+  term: normal Triangle 200.000 230.000 260.000
+  term: elevated Triangle 230.000 260.000 300.000
+  term: very_high Trapezoid 260.000 300.000 400.000 400.000
+InputVariable: oldpeak
+  description: ST depression induced by exercise
+  enabled: true
+  range: 0.000 7.030
+  lock-range: false
+  term: good Trapezoid 0.000 0.000 1.000 2.000
+  term: bad Triangle 1.000 2.300 4.000
+  term: very_bad Trapezoid 3.000 3.600 7.000 7.000
+OutputVariable: risk
+  enabled: true
+  range: 0.000 1.000
+  lock-range: false
+  aggregation: Maximum
+  defuzzifier: Centroid 100
+  default: nan
+  lock-previous: false
+  term: very_low Triangle 0.000 0.000 0.349
+  term: low Triangle 0.100 0.300 0.500
+  term: moderate Triangle 0.350 0.500 0.650
+  term: high Triangle 0.500 0.700 0.900
+  term: very_high Triangle 0.650 1.000 1.000
+RuleBlock: 
+  enabled: true
+  conjunction: Minimum
+  disjunction: Maximum
+  implication: Minimum
+  activation: General
+  rule: if age is young and max_heart_rate is low and cholesterol is low and oldpeak is good then risk is very_low
+  rule: if age is young and max_heart_rate is low and cholesterol is low and oldpeak is bad then risk is moderate
+  rule: if age is young and max_heart_rate is low and cholesterol is low and oldpeak is very_bad then risk is moderate
+  rule: if age is young and max_heart_rate is low and cholesterol is normal and oldpeak is good then risk is very_low
+  rule: if age is young and max_heart_rate is low and cholesterol is normal and oldpeak is bad then risk is low
+  rule: if age is young and max_heart_rate is low and cholesterol is normal and oldpeak is very_bad then risk is moderate
+  rule: if age is young and max_heart_rate is low and cholesterol is elevated and oldpeak is good then risk is low
+  rule: if age is young and max_heart_rate is low and cholesterol is elevated and oldpeak is bad then risk is moderate
+  rule: if age is young and max_heart_rate is low and cholesterol is elevated and oldpeak is very_bad then risk is high
+  rule: if age is young and max_heart_rate is low and cholesterol is very_high and oldpeak is good then risk is moderate
+  rule: if age is young and max_heart_rate is low and cholesterol is very_high and oldpeak is bad then risk is high
+  rule: if age is young and max_heart_rate is low and cholesterol is very_high and oldpeak is very_bad then risk is high
+  rule: if age is young and max_heart_rate is normal and cholesterol is low and oldpeak is good then risk is very_low
+  rule: if age is young and max_heart_rate is normal and cholesterol is low and oldpeak is bad then risk is low
+  rule: if age is young and max_heart_rate is normal and cholesterol is low and oldpeak is very_bad then risk is moderate
+  rule: if age is young and max_heart_rate is normal and cholesterol is normal and oldpeak is good then risk is very_low
+  rule: if age is young and max_heart_rate is normal and cholesterol is normal and oldpeak is bad then risk is very_low
+  rule: if age is young and max_heart_rate is normal and cholesterol is normal and oldpeak is very_bad then risk is low
+  rule: if age is young and max_heart_rate is normal and cholesterol is elevated and oldpeak is good then risk is low
+  rule: if age is young and max_heart_rate is normal and cholesterol is elevated and oldpeak is bad then risk is moderate
+  rule: if age is young and max_heart_rate is normal and cholesterol is elevated and oldpeak is very_bad then risk is moderate
+  rule: if age is young and max_heart_rate is normal and cholesterol is very_high and oldpeak is good then risk is low
+  rule: if age is young and max_heart_rate is normal and cholesterol is very_high and oldpeak is bad then risk is moderate
+  rule: if age is young and max_heart_rate is normal and cholesterol is very_high and oldpeak is very_bad then risk is moderate
+  rule: if age is young and max_heart_rate is high and cholesterol is low and oldpeak is good then risk is very_low
+  rule: if age is young and max_heart_rate is high and cholesterol is low and oldpeak is bad then risk is low
+  rule: if age is young and max_heart_rate is high and cholesterol is low and oldpeak is very_bad then risk is moderate
+  rule: if age is young and max_heart_rate is high and cholesterol is normal and oldpeak is good then risk is very_low
+  rule: if age is young and max_heart_rate is high and cholesterol is normal and oldpeak is bad then risk is low
+  rule: if age is young and max_heart_rate is high and cholesterol is normal and oldpeak is very_bad then risk is low
+  rule: if age is young and max_heart_rate is high and cholesterol is elevated and oldpeak is good then risk is low
+  rule: if age is young and max_heart_rate is high and cholesterol is elevated and oldpeak is very_bad then risk is moderate
+  rule: if age is young and max_heart_rate is high and cholesterol is elevated and oldpeak is bad then risk is moderate
+  rule: if age is young and max_heart_rate is high and cholesterol is very_high and oldpeak is good then risk is low
+  rule: if age is young and max_heart_rate is high and cholesterol is very_high and oldpeak is bad then risk is moderate
+  rule: if age is young and max_heart_rate is high and cholesterol is very_high and oldpeak is very_bad then risk is moderate
+  rule: if age is medium and max_heart_rate is low and cholesterol is low and oldpeak is good then risk is low
+  rule: if age is medium and max_heart_rate is low and cholesterol is low and oldpeak is bad then risk is moderate
+  rule: if age is medium and max_heart_rate is low and cholesterol is low and oldpeak is very_bad then risk is moderate
+  rule: if age is medium and max_heart_rate is low and cholesterol is normal and oldpeak is good then risk is low
+  rule: if age is medium and max_heart_rate is low and cholesterol is normal and oldpeak is bad then risk is low
+  rule: if age is medium and max_heart_rate is low and cholesterol is normal and oldpeak is very_bad then risk is moderate
+  rule: if age is medium and max_heart_rate is low and cholesterol is elevated and oldpeak is good then risk is moderate
+  rule: if age is medium and max_heart_rate is low and cholesterol is elevated and oldpeak is bad then risk is moderate
+  rule: if age is medium and max_heart_rate is low and cholesterol is elevated and oldpeak is very_bad then risk is high
+  rule: if age is medium and max_heart_rate is low and cholesterol is very_high and oldpeak is good then risk is moderate
+  rule: if age is medium and max_heart_rate is low and cholesterol is very_high and oldpeak is bad then risk is moderate
+  rule: if age is medium and max_heart_rate is low and cholesterol is very_high and oldpeak is very_bad then risk is high
+  rule: if age is medium and max_heart_rate is normal and cholesterol is low and oldpeak is good then risk is low
+  rule: if age is medium and max_heart_rate is normal and cholesterol is low and oldpeak is bad then risk is low
+  rule: if age is medium and max_heart_rate is normal and cholesterol is low and oldpeak is very_bad then risk is moderate
+  rule: if age is medium and max_heart_rate is normal and cholesterol is normal and oldpeak is good  then risk is very_low
+  rule: if age is medium and max_heart_rate is normal and cholesterol is normal and oldpeak is bad then risk is low
+  rule: if age is medium and max_heart_rate is normal and cholesterol is normal and oldpeak is very_bad then risk is moderate
+  rule: if age is medium and max_heart_rate is normal and cholesterol is elevated and oldpeak is good then risk is low
+  rule: if age is medium and max_heart_rate is normal and cholesterol is elevated and oldpeak is bad then risk is moderate
+  rule: if age is medium and max_heart_rate is normal and cholesterol is elevated and oldpeak is very_bad then risk is high
+  rule: if age is medium and max_heart_rate is normal and cholesterol is very_high and oldpeak is good then risk is moderate
+  rule: if age is medium and max_heart_rate is normal and cholesterol is very_high and oldpeak is bad then risk is high
+  rule: if age is medium and max_heart_rate is normal and cholesterol is very_high and oldpeak is very_bad then risk is high
+  rule: if age is medium and max_heart_rate is high and cholesterol is low and oldpeak is good then risk is low
+  rule: if age is medium and max_heart_rate is high and cholesterol is low and oldpeak is bad then risk is low
+  rule: if age is medium and max_heart_rate is high and cholesterol is low and oldpeak is very_bad then risk is moderate
+  rule: if age is medium and max_heart_rate is high and cholesterol is normal and oldpeak is good then risk is low
+  rule: if age is medium and max_heart_rate is high and cholesterol is normal and oldpeak is bad then risk is low
+  rule: if age is medium and max_heart_rate is high and cholesterol is normal and oldpeak is very_bad then risk is moderate
+  rule: if age is medium and max_heart_rate is high and cholesterol is elevated and oldpeak is good then risk is moderate
+  rule: if age is medium and max_heart_rate is high and cholesterol is elevated and oldpeak is bad then risk is moderate
+  rule: if age is medium and max_heart_rate is high and cholesterol is elevated and oldpeak is very_bad then risk is moderate
+  rule: if age is medium and max_heart_rate is high and cholesterol is very_high and oldpeak is good  then risk is moderate
+  rule: if age is medium and max_heart_rate is high and cholesterol is very_high and oldpeak is bad then risk is moderate
+  rule: if age is medium and max_heart_rate is high and cholesterol is very_high and oldpeak is very_bad then risk is high
+  rule: if age is old and max_heart_rate is low and cholesterol is low and oldpeak is good then risk is moderate
+  rule: if age is old and max_heart_rate is low and cholesterol is low and oldpeak is bad then risk is high
+  rule: if age is old and max_heart_rate is low and cholesterol is low and oldpeak is very_bad then risk is high
+  rule: if age is old and max_heart_rate is low and cholesterol is normal and oldpeak is good then risk is low
+  rule: if age is old and max_heart_rate is low and cholesterol is normal and oldpeak is bad then risk is moderate
+  rule: if age is old and max_heart_rate is low and cholesterol is normal and oldpeak is very_bad then risk is high
+  rule: if age is old and max_heart_rate is low and cholesterol is elevated and oldpeak is good then risk is high
+  rule: if age is old and max_heart_rate is low and cholesterol is elevated and oldpeak is bad then risk is high
+  rule: if age is old and max_heart_rate is low and cholesterol is elevated and oldpeak is very_bad then risk is high
+  rule: if age is old and max_heart_rate is low and cholesterol is very_high and oldpeak is good then risk is high
+  rule: if age is old and max_heart_rate is low and cholesterol is very_high and oldpeak is bad then risk is high
+  rule: if age is old and max_heart_rate is low and cholesterol is very_high and oldpeak is very_bad then risk is high
+  rule: if age is old and max_heart_rate is normal and cholesterol is low and oldpeak is good then risk is moderate
+  rule: if age is old and max_heart_rate is normal and cholesterol is low and oldpeak is bad then risk is high
+  rule: if age is old and max_heart_rate is normal and cholesterol is low and oldpeak is very_bad then risk is high
+  rule: if age is old and max_heart_rate is normal and cholesterol is normal and oldpeak is good then risk is low
+  rule: if age is old and max_heart_rate is normal and cholesterol is normal and oldpeak is bad then risk is low
+  rule: if age is old and max_heart_rate is normal and cholesterol is normal and oldpeak is very_bad then risk is moderate
+  rule: if age is old and max_heart_rate is normal and cholesterol is elevated and oldpeak is good then risk is moderate
+  rule: if age is old and max_heart_rate is normal and cholesterol is elevated and oldpeak is bad then risk is high
+  rule: if age is old and max_heart_rate is normal and cholesterol is elevated and oldpeak is very_bad then risk is high
+  rule: if age is old and max_heart_rate is normal and cholesterol is very_high and oldpeak is good then risk is high
+  rule: if age is old and max_heart_rate is normal and cholesterol is very_high and oldpeak is bad then risk is very_high
+  rule: if age is old and max_heart_rate is normal and cholesterol is very_high and oldpeak is very_bad then risk is very_high
+  rule: if age is old and max_heart_rate is high and cholesterol is low and oldpeak is good then risk is moderate
+  rule: if age is old and max_heart_rate is high and cholesterol is low and oldpeak is bad then risk is high
+  rule: if age is old and max_heart_rate is high and cholesterol is low and oldpeak is very_bad then risk is high
+  rule: if age is old and max_heart_rate is high and cholesterol is normal and oldpeak is good then risk is moderate
+  rule: if age is old and max_heart_rate is high and cholesterol is normal and oldpeak is bad then risk is low
+  rule: if age is old and max_heart_rate is high and cholesterol is normal and oldpeak is very_bad then risk is moderate
+  rule: if age is old and max_heart_rate is high and cholesterol is elevated and oldpeak is good then risk is moderate
+  rule: if age is old and max_heart_rate is high and cholesterol is elevated and oldpeak is bad then risk is high
+  rule: if age is old and max_heart_rate is high and cholesterol is elevated and oldpeak is very_bad then risk is high
+  rule: if age is old and max_heart_rate is high and cholesterol is very_high and oldpeak is good then risk is high
+  rule: if age is old and max_heart_rate is high and cholesterol is very_high and oldpeak is bad then risk is high
+  rule: if age is old and max_heart_rate is high and cholesterol is very_high and oldpeak is very_bad then risk is very_high
+  rule: if age is very_old and max_heart_rate is low and cholesterol is low and oldpeak is good then risk is high
+  rule: if age is very_old and max_heart_rate is low and cholesterol is low and oldpeak is bad then risk is high
+  rule: if age is very_old and max_heart_rate is low and cholesterol is low and oldpeak is very_bad then risk is high
+  rule: if age is very_old and max_heart_rate is low and cholesterol is normal and oldpeak is good then risk is high
+  rule: if age is very_old and max_heart_rate is low and cholesterol is normal and oldpeak is bad then risk is moderate
+  rule: if age is very_old and max_heart_rate is low and cholesterol is normal and oldpeak is very_bad then risk is high
+  rule: if age is very_old and max_heart_rate is low and cholesterol is elevated and oldpeak is good then risk is high
+  rule: if age is very_old and max_heart_rate is low and cholesterol is elevated and oldpeak is bad then risk is high
+  rule: if age is very_old and max_heart_rate is low and cholesterol is elevated and oldpeak is very_bad then risk is high
+  rule: if age is very_old and max_heart_rate is low and cholesterol is very_high and oldpeak is good then risk is very_high
+  rule: if age is very_old and max_heart_rate is low and cholesterol is very_high and oldpeak is bad then risk is very_high
+  rule: if age is very_old and max_heart_rate is low and cholesterol is very_high and oldpeak is very_bad then risk is very_high
+  rule: if age is very_old and max_heart_rate is normal and cholesterol is low and oldpeak is good then risk is high
+  rule: if age is very_old and max_heart_rate is normal and cholesterol is low and oldpeak is bad then risk is high
+  rule: if age is very_old and max_heart_rate is normal and cholesterol is low and oldpeak is very_bad then risk is high
+  rule: if age is very_old and max_heart_rate is normal and cholesterol is normal and oldpeak is good then risk is low
+  rule: if age is very_old and max_heart_rate is normal and cholesterol is normal and oldpeak is bad then risk is moderate
+  rule: if age is very_old and max_heart_rate is normal and cholesterol is normal and oldpeak is very_bad then risk is moderate
+  rule: if age is very_old and max_heart_rate is normal and cholesterol is elevated and oldpeak is good then risk is high
+  rule: if age is very_old and max_heart_rate is normal and cholesterol is elevated and oldpeak is bad then risk is high
+  rule: if age is very_old and max_heart_rate is normal and cholesterol is elevated and oldpeak is very_bad then risk is very_high
+  rule: if age is very_old and max_heart_rate is normal and cholesterol is very_high and oldpeak is good then risk is high
+  rule: if age is very_old and max_heart_rate is normal and cholesterol is very_high and oldpeak is bad then risk is very_high
+  rule: if age is very_old and max_heart_rate is normal and cholesterol is very_high and oldpeak is very_bad then risk is very_high
+  rule: if age is very_old and max_heart_rate is high and cholesterol is low and oldpeak is good then risk is high
+  rule: if age is very_old and max_heart_rate is high and cholesterol is low and oldpeak is bad then risk is high
+  rule: if age is very_old and max_heart_rate is high and cholesterol is low and oldpeak is very_bad then risk is high
+  rule: if age is very_old and max_heart_rate is high and cholesterol is normal and oldpeak is good then risk is high
+  rule: if age is very_old and max_heart_rate is high and cholesterol is normal and oldpeak is bad then risk is moderate
+  rule: if age is very_old and max_heart_rate is high and cholesterol is normal and oldpeak is very_bad then risk is moderate
+  rule: if age is very_old and max_heart_rate is high and cholesterol is elevated and oldpeak is good then risk is high
+  rule: if age is very_old and max_heart_rate is high and cholesterol is elevated and oldpeak is bad then risk is high
+  rule: if age is very_old and max_heart_rate is high and cholesterol is elevated and oldpeak is very_bad then risk is very_high
+  rule: if age is very_old and max_heart_rate is high and cholesterol is very_high and oldpeak is good then risk is very_high
+  rule: if age is very_old and max_heart_rate is high and cholesterol is very_high and oldpeak is bad then risk is very_high
+  rule: if age is very_old and max_heart_rate is high and cholesterol is very_high and oldpeak is very_bad then risk is very_high

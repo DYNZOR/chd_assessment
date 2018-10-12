@@ -1,0 +1,88 @@
+diary on 
+FIS = readfis('FIS_Matlab');
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('horzcat')" style="font-weight:bold">horzcat</a>
+Dimensions of matrices being concatenated are not consistent.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('parsrule', 'F:\Program_Files\Matlab\toolbox\fuzzy\fuzzy\parsrule.m', 119)" style="font-weight:bold">parsrule</a> (<a href="matlab: opentoline('F:\Program_Files\Matlab\toolbox\fuzzy\fuzzy\parsrule.m',119,0)">line 119</a>)
+index=[find(inTxtRuleList2==','),...
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('readfis', 'F:\Program_Files\Matlab\toolbox\fuzzy\fuzzy\readfis.m', 229)" style="font-weight:bold">readfis</a> (<a href="matlab: opentoline('F:\Program_Files\Matlab\toolbox\fuzzy\fuzzy\readfis.m',229,0)">line 229</a>)
+  out=parsrule(out,txtRuleList,'indexed');
+} 
+FIS = readfis('FIS_Matlab');
+FIS
+
+FIS = 
+
+            name: 'Heart_Disease_Risk_FIS'
+            type: 'mamdani'
+       andMethod: 'min'
+        orMethod: 'max'
+    defuzzMethod: 'centroid'
+       impMethod: 'min'
+       aggMethod: 'max'
+           input: [1x4 struct]
+          output: [1x1 struct]
+            rule: [1x120 struct]
+
+subplot(3,1,1); plotmf(Fis,'input',1);
+{Undefined function or variable 'Fis'.
+} 
+subplot(3,1,1); plotmf(FIS,'input',1);
+subplot(3,1,2); plotmf(FIS,'input',2);
+subplot(3,1,3); plotmf(FIS,'input',3);
+subplot(3,1,1); plotmf(FIS,'input',1);
+subplot(3,1,2); plotmf(FIS,'input',2);
+subplot(3,1,3); plotmf(FIS,'input',3);
+plotmf(FIS,'output',1);
+fuzzy
+help evalfis
+  <strong>evalfis</strong>    Perform fuzzy inference calculations.
+ 
+    Y = <strong>evalfis</strong>(U,FIS) simulates the Fuzzy Inference System FIS for the 
+    input data U and returns the output data Y.  For a system with N 
+    input variables and L output variables, 
+       * U is a M-by-N matrix, each row being a particular input vector
+       * Y is M-by-L matrix, each row being a particular output vector.
+    
+    Y = <strong>evalfis</strong>(U,FIS,NPts) further specifies number of sample points
+    on which to evaluate the membership functions over the input or output
+    range. If this argument is not used, the default value is 101 points.
+ 
+    [Y,IRR,ORR,ARR] = <strong>evalfis</strong>(U,FIS) also returns the following range 
+    variables when U is a row vector (only one set of inputs is applied):
+       * IRR: the result of evaluating the input values through the membership
+         functions. This is a matrix of size Nr-by-N, where Nr is the number
+         of rules, and N is the number of input variables.
+       * ORR: the result of evaluating the output values through the membership
+         functions. This is a matrix of size NPts-by-Nr*L. The first Nr
+         columns of this matrix correspond to the first output, the next Nr
+         columns correspond to the second output, and so forth.
+       * ARR: the NPts-by-L matrix of the aggregate values sampled at NPts
+         along the output range for each output.
+ 
+    Example:
+        fis = readfis('tipper');
+        out = evalfis([2 1; 4 9],fis)
+    This generates the response
+        out =
+    	   7.0169
+    	  19.6810
+ 
+    See also <a href="matlab:help readfis">readfis</a>, <a href="matlab:help ruleview">ruleview</a>, <a href="matlab:help gensurf">gensurf</a>.
+
+    Reference page in Help browser
+       <a href="matlab:doc evalfis">doc evalfis</a>
+
+Output = evalfis(TestDataFIS, FIS);
+{Undefined function or variable 'TestDataFIS'.
+} 
+Output = evalfis(TestdataFIS, FIS);
+[Warning: Some input values are outside of the specified input
+range.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('evalfis', 'F:\Program_Files\Matlab\toolbox\fuzzy\fuzzy\evalfis.m', 75)" style="font-weight:bold">evalfis</a> (<a href="matlab: opentoline('F:\Program_Files\Matlab\toolbox\fuzzy\fuzzy\evalfis.m',75,0)">line 75</a>)] 
+Output = evalfis(TestdataFIS, FIS);
+[Warning: Some input values are outside of the specified input
+range.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('evalfis', 'F:\Program_Files\Matlab\toolbox\fuzzy\fuzzy\evalfis.m', 75)" style="font-weight:bold">evalfis</a> (<a href="matlab: opentoline('F:\Program_Files\Matlab\toolbox\fuzzy\fuzzy\evalfis.m',75,0)">line 75</a>)] 
+diary off
